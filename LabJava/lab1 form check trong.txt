@@ -1,0 +1,12 @@
+System.out.println("The old First Name " + oldFirstName + ", Input the new first name: ");
+                newFirstName = sc.nextLine().toUpperCase();
+                valid = newFirstName.matches("^[A-Za-z_\\s]{3,40}$");
+                if(newFirstName == "") {
+                    System.out.println("Gia tri da duoc bo qua");
+                    System.out.println("The new first name: "+oldFirstName);
+                }
+                if (!valid) {
+                    System.out.println("The first name is not valid");
+                }
+                if (valid = newFirstName.matches("^[A-Za-z_\\s]{3,40}$")) {
+                    this.get(pos).setFirstName(newFirstName);
