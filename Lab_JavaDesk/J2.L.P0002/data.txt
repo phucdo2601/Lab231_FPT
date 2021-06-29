@@ -1,0 +1,1 @@
+se01,Necessary Item,Easily to break,sold out,10:00,123456
