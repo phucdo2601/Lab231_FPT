@@ -1,0 +1,138 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-image: url(../images/1.jpg);
+    -webkit-background-size: cover;
+    font-family: Poppins;
+    min-height: 100vh;
+}
+
+.wrapper{
+    width: 400px;
+    /*height: 570px;*/
+    color: #000;
+    top: 50%;
+    left: 50%;
+    padding: 60px 30px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    box-shadow: 8px 8px 50px #000;
+}
+
+h1{
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    font-size: 22px;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 8%;
+    font-family: Courgette;
+}
+
+.wrapper input{
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.wrapper input[type=text], .wrapper input[type=password]{
+    border: none;
+    border-bottom: 1px solid;
+    background: transparent;
+    outline: none;
+    height: 30px;
+    font-size: 16px;
+    opacity: 1;
+    color:  #ccc;
+}
+
+
+.wrapper input[type=submit]{
+    border: none;
+    outline: none;
+    height: 40px;
+    background: #f6648b;
+    color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.wrapper input[type=submit]:hover{
+    cursor: pointer;
+}
+
+.wrapper a{
+    font-size: 14px;
+    text-decoration: none;
+    color: #fff;
+    opacity: 0.8;
+}
+
+.wrapper a:hover{
+    color: rgb(70, 47, 47);
+    opacity: 1;
+}
+
+.bottom-text input{
+    width: 10%;
+    float: left;
+}
+
+.bottom-text a{
+    float: right;
+}
+
+.socials{
+    margin: 12%;
+    text-align: center;
+}
+
+.socials a{
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 50%;
+    margin: 0% 5px;
+}
+
+.socials a:nth-child(1){
+    background: #3b5998;
+}
+.socials a:nth-child(2){
+    background: #55acee;
+}
+.socials a:nth-child(3){
+    background: #bd081c;
+}
+.socials a:nth-child(4){
+    background: #0077b5;
+}
+.socials a i{
+    padding: 8px 0;
+}
+
+.signup_link{
+    margin: 0;
+    text-align: center;
+    font-size: center;
+    color: #130404;
+}
+
+.signup_link a{
+    color: #84a4b9;
+    text-decoration: none;
+}
+.signup_link a:hover{
+    text-decoration: underline;
+    color: rgba(75, 27, 15, 0.267);
+}
+#overlay-area{
+    position: absolute;
+    background-color: rgba(0,0,0,0.5);
+    z-index: -5;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+}

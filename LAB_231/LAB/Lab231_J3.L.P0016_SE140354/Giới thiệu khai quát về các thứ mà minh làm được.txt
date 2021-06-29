@@ -1,0 +1,5 @@
+Kính chào Thầy Hòa, em là sinh viên Đỗ Ngọc Phúc, MSSV:SE140354, em xin nộp bài lab java web Lab231_J3.L.P0016_SE140354 của môn Lab231. 
+	+Em xin phép thầy cho em giải thích môt số vấn đề ạ, bài của em em đã test hế trên máy em khá là ổn ạ thầy, 
+		chỉ có cái send_verifcation em test trên máy em thì ổn, mà ra máy khác em sợ bị xung đột, em đã có thêm các thư mục các API 
+		mà em là trong bài ở thư mục API ạ. Database em cũng để trong thư mục web. 
+Em xin hết ạ. Sinh Viên Đỗ Ngọc Phúc (MSSV: SE140354)

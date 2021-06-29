@@ -1,0 +1,54 @@
+ERROR   2021-06-11 23:22:02,026 [http-nio-8084-exec-721] phucdn.filter.MainFilter  - java.lang.NullPointerException
+ERROR   2021-06-12 17:28:09,489 [http-nio-8084-exec-14] phucdn.filter.MainFilter  - javax.servlet.ServletException: Servlet execution threw an exception
+ERROR   2021-06-12 19:22:24,152 [http-nio-8084-exec-5] phucdn.filter.MainFilter  - org.apache.jasper.JasperException: An exception occurred processing JSP page /createAccount.jsp at line 27
+
+24:                     <div class="user-details">
+25:                         <div class="input-box">
+26:                             <span class="details">Username</span>
+27:                             <c:if test="${requestScope.InsertedErr}">
+28:                             <span class="errors">Error</span>
+29:                             </c:if>
+30:                             <input type="text" placeholder="Enter your username" name="txtUsername" required>
+
+
+Stacktrace:
+ERROR   2021-06-12 19:23:48,181 [http-nio-8084-exec-2] phucdn.filter.MainFilter  - org.apache.jasper.JasperException: An exception occurred processing JSP page /createAccount.jsp at line 26
+
+23:                     <div class="user-details">
+24:                         <div class="input-box">
+25:                             <span class="details">Username</span>
+26:                             <c:if test="${requestScope.InsertedErr}">
+27:                                 <span class="errors">Error</span>
+28:                             </c:if>
+29:                             <input type="text" placeholder="Enter your username" name="txtUsername" required>
+
+
+Stacktrace:
+ERROR   2021-06-12 19:26:37,806 [http-nio-8084-exec-4] phucdn.filter.MainFilter  - org.apache.jasper.JasperException: An exception occurred processing JSP page /createAccount.jsp at line 33
+
+30:                         </div>
+31:                         <div class="input-box">
+32:                             <span class="details">Fullname</span>
+33:                             <c:if test="${requestScope.InsertedErr}">
+34:                                 <span class="errors">Error</span>
+35:                             </c:if>
+36:                             <input type="text" placeholder="Enter your name" name="txtFullname" required>
+
+
+Stacktrace:
+ERROR   2021-06-12 19:29:47,833 [http-nio-8084-exec-36] phucdn.filter.MainFilter  - org.apache.jasper.JasperException: An exception occurred processing JSP page /createAccount.jsp at line 33
+
+30:                         </div>
+31:                         <div class="input-box">
+32:                             <span class="details">Fullname</span>
+33:                             <c:if test="${requestScope.InsertedErr}">
+34:                                 <span class="errors">Error</span>
+35:                             </c:if>
+36:                             <input type="text" placeholder="Enter your name" name="txtFullname" required>
+
+
+Stacktrace:
+ERROR   2021-06-12 19:54:20,592 [http-nio-8084-exec-87] phucdn.filter.MainFilter  - java.lang.RuntimeException: Uncompilable source code - unreported exception java.lang.Exception; must be caught or declared to be thrown
+ERROR   2021-06-16 20:03:26,368 [http-nio-8084-exec-177] phucdn.filter.MainFilter  - javax.servlet.ServletException: Servlet execution threw an exception
+ERROR   2021-06-17 11:45:04,424 [http-nio-8084-exec-7] phucdn.filter.MainFilter  - javax.servlet.ServletException: Servlet execution threw an exception
+ERROR   2021-06-19 10:40:38,580 [http-nio-8084-exec-144] phucdn.filter.MainFilter  - java.lang.NullPointerException

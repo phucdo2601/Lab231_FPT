@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/Lab231_P0017">
+    <Resource name="Lab231_P0017" type="javax.sql.DataSource" auth="Container" 
+                driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+                url="jdbc:sqlserver://localhost:1433;databaseName=Lab231_JP0017_UserManagement"
+                username="sa" password="12345678"/>
+</Context>
