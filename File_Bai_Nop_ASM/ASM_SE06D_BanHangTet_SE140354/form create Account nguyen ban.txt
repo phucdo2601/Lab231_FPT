@@ -1,0 +1,74 @@
+ <%
+            AccountErrorObject errors = (AccountErrorObject) request.getAttribute("INSERTERRS");
+        %>
+     
+        <h1>Register new Account</h1>
+        <form action="MainController" method="POST">
+            Username: <input type="text" name="txtUsername" value="" />
+            <%
+                if (errors != null) {
+                    if (errors.getUsernameError() != null) {
+            %>
+            <font color="red">
+            <%= errors.getUsernameError() %> 
+            </font>
+            <%
+                    }
+                }
+            %>
+            </br>
+            Password: <input type="password" name="txtPassword" value="" />
+            
+            <%
+                if (errors != null) {
+                    if (errors.getPasswordError() != null) {
+            %>
+            <font color="red">
+            <%= errors.getPasswordError() %> 
+            </font>
+            <%
+                    }
+                }
+            %>
+            </br>
+            Confirm: <input type="text" name="txtConfirm" value="" />
+            
+            <%
+                if(errors != null){
+                    if(errors.getConfirmError() != null){
+            %>
+            <font color = "red">
+                <%= errors.getConfirmError() %>
+            </font>
+            <%
+                    }
+                }
+            %>
+            </br>
+            Fullname: <input type="text" name="txtFullname" value="" />
+            <%
+                if (errors != null) {
+                    if(errors.getFullnameError() != null){   
+            %>
+            <font color = "red">
+                <%= errors.getFullnameError() %>
+            </font>
+            <%
+                    }
+                }
+            %>
+            </br>
+            <input type="submit" value="Create new Account" name="action"/>
+            <input type="reset" value="Reset" />
+        </form>
+        <%
+            if(errors != null){
+                if (true) {       
+        %>
+        <font color ="red">
+            <%= errors.getUsernameisExisted() %>
+        </font>
+        <%
+            }
+        }
+        %>

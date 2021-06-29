@@ -1,0 +1,61 @@
+<table border="1">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Username</th>
+                    <th>Fullname</th>
+                    <th>Address</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%
+                    List<AccountDTO> listAcc = null;
+                    listAcc = (List<AccountDTO>) request.getAttribute("SearchAccINFO");
+                %>
+                <%
+                    if (listAcc != null) {
+                        if (listAcc.size() > 0) {
+                            int countAcc1 = 0;
+                            for (AccountDTO dto : listAcc) {
+                                countAcc1++;
+                                if (listAcc != null) {
+                %>
+                <tr>
+                    <td><%= countAcc1%></td>
+                    <td><%= dto.getUsername()%></td>
+                    <td><%= dto.getFullname()%></td>
+                    <td><%= dto.getAddress()%></td>
+                    <td><%= dto.getPhone()%></td>
+                    <td><%= dto.getEmail()%></td>
+                </tr>
+                <%
+                    }
+                %>
+                <%
+                    }
+                %>  
+                <%
+                } else {
+                    int countAcc2 = 0;
+                    AccountDAO accDAO = new AccountDAO();
+                    listAcc = accDAO.findByLikeUsername("");
+                    for (AccountDTO dto : listAcc) {
+                %>
+                        <tr>
+                            <td><%= countAcc2%></td>
+                            <td><%= dto.getUsername()%></td>
+                            <td><%= dto.getFullname()%></td>
+                            <td><%= dto.getAddress()%></td>
+                            <td><%= dto.getPhone()%></td>
+                            <td><%= dto.getEmail()%></td>
+                        </tr>
+                <%
+                        }
+                %>
+                <%
+                    }
+                %>
+            </tbody>
+        </table>

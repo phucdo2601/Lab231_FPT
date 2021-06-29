@@ -1,0 +1,3 @@
+mot so ly thuyet can ban: 
++truyen trang ma khong mang du lieu thi dung respond.sendDedirect();
++neu co truyen du lieu di thi phai dung request.getResquestDispartcher("","");

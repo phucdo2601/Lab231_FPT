@@ -1,0 +1,118 @@
+//cau lenh check login trong db khi co cai thien khi them bien set trang thai
+public String checkLogin(String username, String password, boolean isStatus) throws SQLException, ClassNotFoundException, Exception {
+        String role = "failed";
+        AccountDTO accDTO = new AccountDTO();
+        try {
+            con = MyConnection.getConnection();
+            if (con != null) {
+                String sql = "select roleID from Account where username = ? \n"
+                        + "COLLATE SQL_Latin1_General_CP1_CS_AS and password = ? \n"
+                        + "COLLATE SQL_Latin1_General_CP1_CS_AS and status = ?";
+                stm = con.prepareStatement(sql);
+                stm.setString(1, username);
+                stm.setString(2, password);
+                stm.setBoolean(3, isStatus);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    role = rs.getString("roleID");
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Error at checkLogin: ");
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+        return role;
+    }
+
+
+// cau lenh checkLogin nguyen ban, khi chua xet bien trang thai
+public String checkLogin(String username, String password) throws SQLException, ClassNotFoundException, Exception {
+        String role = "failed";
+        try {
+            con = MyConnection.getConnection();
+            if (con != null) {
+                String sql = "select roleID\n"
+                        + "from Account where username =? COLLATE SQL_Latin1_General_CP1_CS_AS  \n"
+                        + "and password = ? COLLATE SQL_Latin1_General_CP1_CS_AS ";
+                stm = con.prepareStatement(sql);
+                stm.setString(1, username);
+                stm.setString(2, password);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    role = rs.getString("roleID");
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Error at checkLogin: ");
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+        return role;
+    }
+
+// loginServlet nguyen ban khi chua co xet trang thai
+@WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
+public class LoginServlet extends HttpServlet {
+    private final static String ADMIN = "admin.jsp";
+    private final static String USER = "Home.jsp";
+    private final static String ERROR ="error.jsp";
+    private final static String INVALID = "login.jsp";
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        String url = ERROR;
+        try {
+            String username = request.getParameter("txtUsername");
+            String password = request.getParameter("txtPassword");
+            
+            boolean valid = true;
+            AccountErrorObject errorObj = new AccountErrorObject();
+            HttpSession session = request.getSession();
+            if (username.length() == 0 ) {
+                valid = false;
+                errorObj.setUsernameError("Username is not Blank!");
+            }
+            if (password.length() == 0) {
+                valid = false;
+                errorObj.setPasswordError("Password is not Blank!");
+            }
+            
+            if (valid) {
+                AccountDAO dao = new AccountDAO();
+                String role = dao.checkLogin(username, password);
+                if (role.equals("failed")) {
+                    request.setAttribute("ERROR", "Username or Password is not valid!");
+                }else{
+                    if (role.equals("admin")) {
+                        url = ADMIN;
+                    }else if (role.equals("user")) {
+                        url = USER;
+                        //lay session cua username
+                        session.setAttribute("USERNAME", username);
+                    }else{
+                        request.setAttribute("ERROR", errorObj);
+                    }
+                }
+            }else{
+                url = INVALID;
+                request.setAttribute("INVALID", errorObj);
+            }
+        } catch (Exception e) {
+            log("ERROR at LoginServlet: "+e.getMessage());
+        }
+        finally{
+            request.getRequestDispatcher(url).forward(request, response);
+        }
+    }

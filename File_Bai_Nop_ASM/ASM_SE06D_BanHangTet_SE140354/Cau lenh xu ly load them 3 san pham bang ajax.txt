@@ -1,0 +1,46 @@
+protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        //tam thoi load ra 3 san pham truoc da
+
+        PrintWriter out = response.getWriter();
+        String amount = request.getParameter("exits");
+        int iAmount = Integer.parseInt(amount);
+        try {
+            ProductDAO proDAO = new ProductDAO();
+            //cau lenh nay lay 3 san pham tiep theo dua tren so luong san san phan da hien thi
+            List<ProductDTO> listThreeProduct = proDAO.getNextThreeProduct(iAmount);
+            if (listThreeProduct != null) {
+                for (ProductDTO p : listThreeProduct) {
+                    out.println("<div class=\"productByAjax col-12 col-md-6 col-lg-4\">\n" +
+"                        <div class=\"product-image-wrapper\">\n" +
+"                            <div class=\"single-products\">\n" +
+"                                <div class=\"productinfo text-center\">\n" +
+"                                    <img src=\""+p.getImage()+"\" style=\"width: 200px; height: 200px\" alt=\"\" />\n" +
+"                                    <h2>"+p.getPrice()+" VND</h2>\n" +
+"                                    <p><a href=\"DetailServlet?productID="+p.getProductID()+"\">"+p.getProductName()+"</a></p>\n" +
+"                                    <a href=\"#\" class=\"btn btn-default add-to-cart\"><i class=\"fa fa-shopping-cart\"></i>Add to cart</a>\n" +
+"                                </div>\n" +
+"                                <div class=\"product-overlay\">\n" +
+"                                    <div class=\"overlay-content\">\n" +
+"                                        <h2>"+p.getPrice()+" VND</h2>\n" +
+"                                        <p><a href=\"DetailServlet?productID="+p.getProductID()+"\">"+p.getProductName()+"</a></p>\n" +
+"                                        <a href=\"#\" class=\"btn btn-default add-to-cart\"><i class=\"fa fa-shopping-cart\"></i>Add to cart</a>\n" +
+"                                    </div>\n" +
+"                                </div>\n" +
+"                            </div>\n" +
+"                            <div class=\"choose\">\n" +
+"                                <ul class=\"nav nav-pills nav-justified\">\n" +
+"                                    <li><a href=\"#\"><i class=\"fa fa-plus-square\"></i>Add to wishlist</a></li>\n" +
+"                                    <li><a href=\"DetailServlet?productID="+p.getProductID()+"\"><i class=\"fa fa-plus-square\"></i>View More</a></li>\n" +
+"                                </ul>\n" +
+"                            </div>\n" +
+"                        </div>\n" +
+"                    </div>");
+                }
+            }
+        } catch (Exception e) {
+            log("Error at LoadMoreServelet: " + e.getMessage());
+            e.printStackTrace();
+        } 
+    }

@@ -1,0 +1,41 @@
+public List<ProductDTO> findProductLikeByName(String search) throws Exception {
+        List<ProductDTO> result = new ArrayList<>();
+        ProductDTO dto = null;
+        String productID;
+        String categoryID;
+        String productName;
+        String image;
+        String description;
+        double price;
+        int quantity;
+        int sale;
+        try {
+            con = MyConnection.getConnection();
+            if (con != null) {
+                String sql = "select productID, categoryID, productName, "
+                        + "image, description, price, quantity, sale\n"
+                        + "from Product where productName like ?";
+                stm = con.prepareStatement(sql);
+                stm.setString(1, "%" + search + "%");
+                rs = stm.executeQuery();
+                while (rs.next()) {
+                    productID = rs.getString("productID");
+                    categoryID = rs.getString("categoryID");
+                    productName = rs.getString("productName");
+                    image = rs.getString("image");
+                    description = rs.getString("description");
+                    price = rs.getDouble("price");
+                    quantity = rs.getInt("quantity");
+                    sale = rs.getInt("sale");
+                    dto = new ProductDTO(productID, categoryID, productName, image, description, price, quantity, sale);
+                    result.add(dto);
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Error at findProductLikeByName:");
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+        return result;
+    }
